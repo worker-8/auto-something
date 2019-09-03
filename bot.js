@@ -60,8 +60,8 @@ const killpromiseengine = async ()=>{
         //uri: 'https://jsonplaceholder.typicode.com/posts',
         uri:'https://reqres.in/api/users',
         data: {
-            name: 'ShabQL',
-            job: 'ShabReql'
+            name: 'dummy ',
+            job: 'tonto del pueblo'
         },
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -76,10 +76,6 @@ const killpromiseengine = async ()=>{
 const trigger  = async () =>{
 
     while (!stop) {
-        if (count === 10) {
-            stop = true;
-        }
-
         let result = await killpromiseengine();
 
         if(result.status !== 200){
@@ -87,11 +83,10 @@ const trigger  = async () =>{
                 status: result.status,
                 log: result.statusText
             });
-            
+            stop = true;
             console.error('Error status = ' + result.status);
 
         }else{
-            //log.info('We are OK bitches!!');
             console.info('We are OK bitches!!')
         }
 
@@ -101,5 +96,7 @@ const trigger  = async () =>{
 };
 
 trigger();
+
+console.log('count', count);
 
 
